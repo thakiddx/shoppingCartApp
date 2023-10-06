@@ -1,7 +1,7 @@
 import { createContext, useReducer } from "react";
 
-const CartContext = createContext();
-const { Provider, Consumer } = CartContext;
+export const cartContext = createContext();
+const { Provider, Consumer } = cartContext;
 
 
 const ADD_TO_CART = 'ADD_TO_CART';
@@ -33,4 +33,4 @@ const ShoppingProvider = ({ children }) => {
     );
 };
 
-export { ShoppingProvider, Consumer as ShoppingConsumer, CartContext, ADD_TO_CART, REMOVE_FROM_CART };
+export { ShoppingProvider, Consumer as ShoppingConsumer, ADD_TO_CART, REMOVE_FROM_CART };
