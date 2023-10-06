@@ -1,49 +1,42 @@
-//Populate the carousel with the product data fetched from the API https://fakestoreapi.com/products/
-//include navigation buttons to move between the products
-//include a button to add the product to the cart
-//include a button to remove the product from the cart
-//include a button to view the product details
+import React, { useContext, useEffect, useState } from 'react';
+import { CartContext } from '../context/CartContext';
+import axios from 'axios';
 
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Card, Button, Carousel } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
-
-const ProductCarousel = () => {
+const Carousel = () => {
+    const { state, dispatch } = useContext(CartContext);
     const [products, setProducts] = useState([]);
-    
+    const apiUrl = 'https://fakestoreapi.com/products';
+
     useEffect(() => {
-        fetch("https://fakestoreapi.com/products/")
-        .then((response) => response.json())
-        .then((json) => setProducts(json));
+        // API request to fetch product data
+        axios.get(apiUrl)
+            .then(response => {
+                setProducts(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching product data', error);
+            });
     }, []);
-    
+
+    // Function to add a product to cart
+    const addToCart = (product) => {
+        dispatch({ type: 'ADD_TO_CART', payload: product });
+    }
+
     return (
-        <Carousel>
-        {products.map((product) => (
-            <Carousel.Item key={product.id}>
-            <Card style={{ width: "18rem" }}>
-                <Card.Img variant="top" src={product.image} />
-                <Card.Body>
-                <Card.Title>{product.title}</Card.Title>
-                <Card.Text>{product.description}</Card.Text>
-                <Card.Text>Price: ${product.price}</Card.Text>
-                <Button variant="primary">
-                    <Link to={`/product/${product.id}`}>
-                    <FontAwesomeIcon icon={faEye} />
-                    </Link>
-                </Button>
-                <Button variant="primary">
-                    <FontAwesomeIcon icon={faCartPlus} />
-                </Button>
-                </Card.Body>
-            </Card>
-            </Carousel.Item>
-        ))}
-        </Carousel>
+        <div>
+            <h2>Featured Products</h2>
+            <div className='carousel'>
+                {products.map((product) => (
+                    <div key={product.id} className='product-card'>
+                        <h3>{product.title}</h3>
+                        <p>Price: ${product.price}</p>
+                        <button onClick={() => addToCart(product)}>Add to Cart</button>
+                    </div>
+                ))}
+            </div>
+        </div>
     );
 };
 
-export default ProductCarousel;
+export default Carousel;

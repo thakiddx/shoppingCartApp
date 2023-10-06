@@ -1,18 +1,36 @@
-import { createContext, useState } from "react";
+import { createContext, useReducer } from "react";
 
 const CartContext = createContext();
+const { Provider, Consumer } = CartContext;
 
-const CartProvider = ({ children }) => {
-    const [cart, setCart] = useState([]);
-    const [cartItems, setCartItems] = useState(0);
-    const [cartTotal, setCartTotal] = useState(0);
-    
+
+const ADD_TO_CART = 'ADD_TO_CART';
+const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
+
+const initialState = {
+    cart: [],
+    products: [],
+    isAuthenticated: false,
+};
+
+const shoppingReducer = (state, action) => {
+    switch (action.type) {
+        case ADD_TO_CART:
+            return { ...state, cart: [...state.cart, action.payload] };
+        case REMOVE_FROM_CART:
+            return { ...state, cart: state.cart.filter(item => item.id !== action.payload) };
+        default:
+            return state;
+    }
+};
+
+const ShoppingProvider = ({ children }) => {
+    const [state, dispatch] = useReducer(shoppingReducer, initialState);
     return (
-        <CartContext.Provider
-        value={{ cart, setCart, cartItems, setCartItems, cartTotal, setCartTotal }}>
-        {children}
-        </CartContext.Provider>
+        <Provider value={{ state, dispatch }}>
+            {children}
+        </Provider>
     );
 };
 
-export { CartContext, CartProvider };
+export { ShoppingProvider, Consumer as ShoppingConsumer, CartContext, ADD_TO_CART, REMOVE_FROM_CART };

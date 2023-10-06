@@ -1,37 +1,15 @@
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import Home from './pages/home'
-import Cart from './pages/CheckoutPage'
-import Product from './pages/ProductsDetailsPage'
-import { CartContext } from './context/CartContext.jsx'
-import './App.css'
-
-
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Home from "./pages/Home";
 
 function App() {
-  const [cart, setCart] = useState([])
-  const [cartItems, setCartItems] = useState(0)
-  const [cartTotal, setCartTotal] = useState(0)
-  
-  return (
-    <>
-      <Router>
-        <CartContext.Provider value={{ cart, setCart, cartItems, setCartItems, cartTotal, setCartTotal }}>
-          <Switch>
-            <Route exact path="/cart">
-              <Cart />
-            </Route>
-            <Route exact path="/product/:id">
-              <Product />
-            </Route>
-            <Route exact path="/">
-              <Home />
-            </Route>
-          </Switch>
-        </CartContext.Provider>
-      </Router>
-    </>
-  )
+    return (
+        <Router>
+            <Switch>
+                <Route exact path="/" component={Home} />
+            </Switch>
+        </Router>
+    );
 }
 
-export default App
-
+export default App;
