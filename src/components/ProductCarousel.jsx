@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { cartContext } from '../context/CartContext';
-import axios from 'axios';
 import '../App.css';
 import '../index.css';
+import { cartContext } from '../context/CartContext'; // Assuming CartContext is the correct context
+import axios from 'axios';
 
 const Carousel = () => {
     const { state, dispatch } = useContext(cartContext);
@@ -27,11 +27,13 @@ const Carousel = () => {
     }
 
     const handlePrevClick = () => {
+        // Calculate the new active index for the previous card
         const newIndex = (activeIndex - 1 + products.length) % products.length;
         setActiveIndex(newIndex);
     };
 
     const handleNextClick = () => {
+        // Calculate the new active index for the next card
         const newIndex = (activeIndex + 1) % products.length;
         setActiveIndex(newIndex);
     };
@@ -44,7 +46,6 @@ const Carousel = () => {
                     <div
                         key={product.id}
                         className={`product-card ${index === activeIndex ? 'active' : ''}`}
-                        style={{ transform: `rotateY(${(index - activeIndex) * 60}deg)` }}
                     >
                         <h3>{product.title}</h3>
                         <p>Price: ${product.price}</p>
@@ -52,8 +53,12 @@ const Carousel = () => {
                     </div>
                 ))}
             </div>
-            <button className='prev-button' onClick={handlePrevClick}>Previous</button>
-            <button className='next-button' onClick={handleNextClick}>Next</button>
+            <button className='prev-button' onClick={handlePrevClick}>
+                Previous
+            </button>
+            <button className='next-button' onClick={handleNextClick}>
+                Next
+            </button>
         </div>
     );
 };
