@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-import '../App.css';
-import '../index.css';
 import { cartContext } from '../context/CartContext';
 import axios from 'axios';
-
+import '../App.css';
+import '../index.css';
 
 const Carousel = () => {
     const { state, dispatch } = useContext(cartContext);
@@ -42,7 +41,11 @@ const Carousel = () => {
             <h2>Featured Products</h2>
             <div className='carousel'>
                 {products.map((product, index) => (
-                    <div key={product.id} className={`product-card ${index === activeIndex ? 'active' : ''} `}>
+                    <div
+                        key={product.id}
+                        className={`product-card ${index === activeIndex ? 'active' : ''}`}
+                        style={{ transform: `rotateY(${(index - activeIndex) * 60}deg)` }}
+                    >
                         <h3>{product.title}</h3>
                         <p>Price: ${product.price}</p>
                         <button onClick={() => addToCart(product)}>Add to Cart</button>
