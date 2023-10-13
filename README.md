@@ -25,7 +25,7 @@ npm install
 npm start
 4. Open your web browser and navigate to [http://localhost:3000](http://localhost:3000) to view the app.
 
-The app is also deployed on [GitHub Pages](https://thakiddx.github.io/shoppingCartApp/).
+The app is also deployed on [Render](https://productslistmod2.onrender.com/).
 
 ## Unsolved Problems
 
@@ -46,6 +46,6 @@ We welcome contributions from the open-source community to help us improve and e
 
 ## Hosted App
 
-You can access the hosted working app on [GitHub Pages](https://thakiddx.github.io/shoppingCartApp/).
+You can access the hosted working app on [Render](https://productslistmod2.onrender.com/).
 
 Feel free to explore the app, shop for products, and enjoy a seamless shopping experience!
