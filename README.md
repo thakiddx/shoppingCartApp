@@ -1,9 +1,9 @@
 # Product Slider Web Application
 
 **Introduction:**
-The Product Slider Web Application is a responsive web-based product slider that allows users to explore a collection of products and view detailed information for each product. It features an intuitive user interface and a seamless shopping experience.
+This App is a products list using an Api.  You can click on a product to view details and will be taken to a seperate page to actaully get a detailed description of the item.
 
-![Product Slider Screenshot](./src/sliderAppScreenShot.png)
+![Product Slider Screenshot](~/product-slider/src/sliderAppScreenShot.png)
 
 **Technologies Used:**
 - React
@@ -29,7 +29,8 @@ The app is also deployed on [GitHub Pages](https://thakiddx.github.io/shoppingCa
 
 ## Unsolved Problems
 
-At the moment, there are no known unsolved issues with the app. It is fully functional and provides a smooth shopping experience.
+At this time The pictures render too large on the products page.
+Was unable to figure out how to make a products carousel or slider to give a more visaul appeal and better UI.  
 
 ## Future Enhancements
 
