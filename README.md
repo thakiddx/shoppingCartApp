@@ -3,7 +3,7 @@
 **Introduction:**
 This App is a products list using an Api.  You can click on a product to view details and will be taken to a seperate page to actaully get a detailed description of the item.
 
-![Product Slider Screenshot](~/product-slider/src/sliderAppScreenShot.png)
+![Product Slider Screenshot](/src/sliderAppScreenShot.png)
 
 **Technologies Used:**
 - React
